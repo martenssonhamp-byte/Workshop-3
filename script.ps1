@@ -18,7 +18,7 @@ $inactiveUsers = $data.users | Where-Object {
     $_.lastLogon -and ($today - [datetime]$_.lastLogon).Days -gt 30
 }
 
-# 4. Add inactive users section
+# Add inactive users section
 $report += "Inactive users (30+ days)`n`n"
 
 foreach ($u in $inactiveUsers) {
@@ -26,11 +26,36 @@ foreach ($u in $inactiveUsers) {
     $report += "$($u.displayName) - $($u.department) - Last logon: $($u.lastLogon) ($days days)`n"
 }
 
-$report += "`nTotal inactive users: $($inactiveUsers.count)`n`n"
+$report += "`nTotal inactive users: $($inactiveUsers.count)`n"
+$report += "--------------------------------------------------------------------------------------`n`n"
 
+#4 Count all users in each department
 
-# 8. Output the report
+$depCount = @{}
+
+#Loop through all users
+foreach ($u in $data.users) {
+    $dept = $u.department
+    if ($dept) {
+        if ($depCount.ContainsKey($dept)) {
+            $depCount[$dept] += 1
+        }
+        else {
+            $depCount[$dept] = 1
+
+        }
+    }
+}
+
+$report += "User count per department `n`n"
+foreach ($dept in $depCount.Keys) {
+    $report += "$dept : $($depCount[$dept])`n"
+    
+}
+
+$report += "--------------------------------------------------------------------------------------`n`n"
+# Output the report
 Write-Output $report
 
-# Optional: Save to file
+# Save to file
 $report | Out-File -FilePath "AD_Audit_Report.txt" -Encoding UTF8
