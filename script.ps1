@@ -1,6 +1,9 @@
 # 1. Load the JSON, date and show domain-name
 $data = Get-Content -Path "ad_export.json" -Raw -Encoding UTF8 | ConvertFrom-Json
 $today = Get-Date
+$summary = ""
+$report = ""
+$finalReport = ""
 
 $report = @"
 AD_AUDIT REPORT
@@ -13,7 +16,7 @@ Created: $(Get-Date)
 "@
 
 #-----------------------------------
-# Function to get inactive accounts
+# Function to get inactive accounts TASK 9
 #-----------------------------------
 
 function Get-InactiveAccounts {
@@ -35,21 +38,13 @@ function Get-InactiveAccounts {
 
 
 # 3. List inactive users that have not been online for more than 30 days
-$inactiveUsers = $data.users | Where-Object {
-    $_.lastLogon -and ($today - [datetime]$_.lastLogon).Days -gt 30
+$inactive30 = Get-InactiveAccounts -days 30
+
+$report += "Inactive Users (30+ days)`n`n"
+foreach ($u in $inactive30) {
+    $report += "{0,-20} {1,-15} {2,-35} {3}`n" -f $u.displayName, $u.department, "Last logon: $($u.lastLogon)", "($($u.DaysInactive) days)"
 }
-
-# Add inactive users section
-$report += "Inactive users (30+ days)`n`n"
-
-foreach ($u in $inactiveUsers) {
-    $days = ($today - [datetime]$u.lastLogon).Days
-    $report += "$($u.displayName) - $($u.department) - Last logon: $($u.lastLogon) ($days days)`n"
-}
-
-$report += "`nTotal inactive users: $($inactiveUsers.count)`n"
 $report += "--------------------------------------------------------------------------------------`n`n"
-
 #4 Count all users in each department
 
 $depCount = @{}
@@ -127,18 +122,56 @@ foreach ($c in $inactiveComputers) {
 }
 $report += "--------------------------------------------------------------------------------------`n`n"
 
-# 9. Collect accounts inactive more than 30 days
 
-$inactive30 = Get-InactiveAccounts -days 30
+# 11. Executive Summary
+$summary += "===========================================================================`n"
+$summary += "EXECUTIVE SUMMARY`n"
+$summary += "===========================================================================`n"
 
-$report += "Inactive Users via Function (30+ days)`n`n"
-foreach ($u in $inactive30) {
-    $report += "$($u.displayName) - $($u.department) - Last logon: $($u.lastLogon) ($($u.DaysInactive) days)`n"
+# 11a - Accounts expiring within 30 days
+
+$expiringAccounts = $data.users | Where-Object {
+    $_.accountExpires -and ([datetime]$_.accountExpires - $today).Days -le 30
 }
+$summary += "          WARNING!  Accounts expiring within 30 days: `n"
+$summary += "---------------------------------------------------------------------------`n"
+foreach ($u in $expiringAccounts) {
+    $daysLeft = ([datetime]$u.accountExpires - $today).Days
+    $summary += "{0,-15} {1,-12} {2}`n" -f $u.displayName, "Expiry: $($u.accountExpires)", "($daysLeft days left)"
+}
+$summary += "`n"
+
+# 11b - Computers inactive 30+ days
+
+$inactiveComputers = $data.computers | Where-Object {
+    $_.lastLogon -and ($today - [datetime]$_.lastLogon).Days -gt 30
+} | Sort-Object @{Expression = { ($today - [datetime]$_.lastLogon).Days }; Descending = $true }
+
+$summary += "          WARNING!  Computers inactive for 30+ days: `n"
+$summary += "---------------------------------------------------------------------------`n"
+foreach ($c in $inactiveComputers) {
+    $daysInactive = ($today - [datetime]$c.lastLogon).Days
+    $summary += "{0,-15} {1,-12} {2}`n" -f $c.name, "Last logon: $($c.lastLogon)", "($daysInactive days)"
+}
+$summary += "`n"
+
+# 11c - Users with passwords older than 90 days
+$oldPassword = $data.users | Where-Object {
+    $_.passwordLastSet -and (New-TimeSpan -Start ([datetime]$_.passwordLastSet) -End $today).Days -gt 90
+} | Sort-Object @{Expression = { (New-TimeSpan -Start ([datetime]$_.passwordLastSet) -End $today).Days }; Descending = $true }
+
+$summary += "           CRITICAL!  Users with password older than 90 days:`n"
+$summary += "---------------------------------------------------------------------------`n"
+foreach ($u in $oldPassword) {
+    $pwdAge = (New-TimeSpan -Start ([datetime]$u.passwordLastSet) -End $today).Days
+    $summary += "{0,-20} {1,-15} {2}`n" -f $u.displayName, "Password age:", "$pwdAge days"
+}
+$summary += "`n===========================================================================`n`n"
 
 
-# Output the report
-Write-Output $report
+
+
+$finalReport = $summary + $report
 
 # Save to file
-$report | Out-File -FilePath "AD_Audit_Report.txt" -Encoding UTF8
+$finalReport | Out-File -FilePath "AD_Audit_Report.txt" -Encoding UTF8 -Force
