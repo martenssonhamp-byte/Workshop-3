@@ -3,7 +3,7 @@
 Domain: techcorp.local
 Forest: techcorp.local
 Export-date: 2025-10-14T06:00:00
-Created: 10/21/2025 09:14:55
+Created: 10/21/2025 09:22:42
 --------------------------------------------------------------------------------------
 Inactive users (30+ days)
 
@@ -73,4 +73,18 @@ Maria Berg           Password age: 163 days
 Johan Svensson       Password age: 149 days 
 Backup Admin Account Password age: 293 days 
 Test User            Password age: 278 days 
+--------------------------------------------------------------------------------------
+
+Top 10 inactive computers 
+
+OLD-PC-001      Last seen: 2025-07-15T10:00:00 (97 days)
+PC-LAG-003      Last seen: 2025-08-10T09:00:00 (72 days)
+LAPTOP-HK-002   Last seen: 2025-08-30T10:00:00 (51 days)
+PC-MAL-003      Last seen: 2025-09-05T11:00:00 (45 days)
+TEST-VM-001     Last seen: 2025-09-20T14:00:00 (30 days)
+PC-HK-005       Last seen: 2025-10-12T14:30:00 (8 days)
+PC-LAG-001      Last seen: 2025-10-14T06:30:00 (7 days)
+PC-DR-001       Last seen: 2025-10-13T22:00:00 (7 days)
+PC-LAG-002      Last seen: 2025-10-13T15:45:00 (7 days)
+SRV-DR-BACKUP   Last seen: 2025-10-14T02:00:00 (7 days)
 

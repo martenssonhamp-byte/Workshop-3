@@ -82,6 +82,29 @@ foreach ($u in $data.users) {
         $report += "{0,-20} {1,-10} {2}" -f $u.displayName, "Password age:", "$passwordDays days `n"
     }
 }
+$report += "--------------------------------------------------------------------------------------`n`n"
+
+# 8. 10 most inactive computers
+
+$report += "Top 10 inactive computers `n`n"
+
+$inactiveComputers = $data.computers | Sort-Object {
+    if ($_.lastLogon) {
+        ($today - [datetime]$_.lastLogon).Days
+    }
+    else {
+        9999# If no date exists, sort them
+    }
+} -Descending | Select-Object -First 10
+
+foreach ($c in $inactiveComputers) {
+    $daysInactive = ($today - [datetime]$c.lastLogon).Days
+    $report += "{0,-15} {1,-25} {2}`n" -f $c.Name, "Last seen: $($c.lastLogon)", "($daysInactive days)"
+}
+$report += "--------------------------------------------------------------------------------------`n`n"
+
+
+
 
 # Output the report
 Write-Output $report
