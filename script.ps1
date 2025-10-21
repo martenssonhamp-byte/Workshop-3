@@ -7,12 +7,12 @@ $finalReport = ""
 
 $report = @"
 AD_AUDIT REPORT
---------------------------------------------------------------------------------------
+---------------------------------------------------------------------------
 Domain: $($data.domain)
 Forest: $($data.forest)
 Export-date: $($data.export_date)
 Created: $(Get-Date)
---------------------------------------------------------------------------------------`n
+---------------------------------------------------------------------------`n
 "@
 
 #-----------------------------------
@@ -40,7 +40,9 @@ function Get-InactiveAccounts {
 # Function for try/catch #12
 #--------------------------------
 function Safe-ParseDate {
-
+    param(
+        [string]$dateString
+    )
     try {
         if ($dateString) {
             return [datetime]$dateString
@@ -50,7 +52,7 @@ function Safe-ParseDate {
         }
     }
     catch {
-        Write-Warning "Could not find date: '$dateSTring'. Skipping.."
+        Write-Warning "Could not parse date: '$dateString'. Skipping.."
         return $null
     }
 }
@@ -62,7 +64,7 @@ $report += "Inactive Users (30+ days)`n`n"
 foreach ($u in $inactive30) {
     $report += "{0,-20} {1,-15} {2,-35} {3}`n" -f $u.displayName, $u.department, "Last logon: $($u.lastLogon)", "($($u.DaysInactive) days)"
 }
-$report += "--------------------------------------------------------------------------------------`n`n"
+$report += "---------------------------------------------------------------------------`n`n"
 #4 Count all users in each department
 
 $depCount = @{}
@@ -87,7 +89,7 @@ foreach ($dept in $depCount.Keys) {
     
 }
 
-$report += "--------------------------------------------------------------------------------------`n`n"
+$report += "---------------------------------------------------------------------------`n`n"
 
 # 5. Group computers per site
 $report += "Computers per site `n`n"
@@ -97,29 +99,46 @@ $computersbysite = $data.computers | Group-Object -Property site
 foreach ($group in $computersbysite) {
     $report += "{0,-14} {1,-10} {2}`n" -f $group.Name, $group.Count, ""
 }
-$report += "--------------------------------------------------------------------------------------`n`n"
+$report += "---------------------------------------------------------------------------`n`n"
 
 # 6. Export inactive users to CSV
 
-$inactiveUsers | Select-Object displayName, department, lastLogon | 
+$inactive30 | Select-Object displayName, department, lastLogon | 
 Export-Csv -Path "inactive_users.csv" -NoTypeInformation -Encoding UTF8
 
 $report += "CSV file 'inactive_users.csv' has been created with inactive users. `n"
-$report += "--------------------------------------------------------------------------------------`n`n"
+$report += "---------------------------------------------------------------------------`n`n"
 
 # 7. Password age for each user
 $report += "Password age per user `n`n"
 
-# Sort password age descending
-$sortedUsers = $data.users | Where-Object { $_.passwordLastSet } | Sort-Object {
-    ($today - [datetime]$_.passwordLastSet).Days
-} -Descending
+$sortedUsers = $data.users | Where-Object {
+    $_.passwordLastSet
+} | Sort-Object -Property @{
+    Expression = {
+        $pwdDate = Safe-ParseDate -dateString $_.passwordLastSet
+        if ($pwdDate) { 
+            ($today - $pwdDate).Days 
+        }
+        else { 
+            0
+        }
+    }
+    Descending = $true
+}
 
 foreach ($u in $sortedUsers) {
-    $passwordDays = ($today - [datetime]$u.passwordLastSet).Days
+    $pwdDate = Safe-ParseDate -dateString $u.passwordLastSet
+    if ($pwdDate) {
+        $passwordDays = ($today - $pwdDate).Days
+    }
+    else {
+        $passwordDays = "N/A"
+    }
     $report += "{0,-20} {1,-15} {2}`n" -f $u.displayName, "Password age:", "$passwordDays days"
 }
-$report += "--------------------------------------------------------------------------------------`n`n"
+$report += "---------------------------------------------------------------------------`n`n"
+
 
 # 8. 10 most inactive computers
 
@@ -138,7 +157,7 @@ foreach ($c in $inactiveComputers) {
     $daysInactive = ($today - [datetime]$c.lastLogon).Days
     $report += "{0,-15} {1,-25} {2}`n" -f $c.Name, "Last seen: $($c.lastLogon)", "($daysInactive days)"
 }
-$report += "--------------------------------------------------------------------------------------`n`n"
+$report += "---------------------------------------------------------------------------`n`n"
 
 
 # 11. Executive Summary
