@@ -3,7 +3,7 @@
 Domain: techcorp.local
 Forest: techcorp.local
 Export-date: 2025-10-14T06:00:00
-Created: 10/21/2025 09:22:42
+Created: 10/21/2025 09:30:01
 --------------------------------------------------------------------------------------
 Inactive users (30+ days)
 
@@ -42,37 +42,37 @@ CSV file 'inactive_users.csv' has been created with inactive users.
 
 Password age per user 
 
-Anna Andersson       Password age: 49 days 
-Björn Björnsson      Password age: 67 days 
-Cecilia Carlsson     Password age: 19 days 
-David Davidsson      Password age: 92 days 
-Erik Eriksson        Password age: 36 days 
-Fredrik Fredriksson  Password age: 141 days 
-Gunnar Gunnarsson    Password age: 11 days 
-Helena Helenasson    Password age: 30 days 
-Ingrid Ingridsson    Password age: 15 days 
-Johan Johansson      Password age: 159 days 
-Karl Karlsson        Password age: 25 days 
-Lars Larsson         Password age: 9 days 
-Maria Mariasson      Password age: 111 days 
-Nils Nilsson         Password age: 193 days 
-Olof Olofsson        Password age: 20 days 
-Peter Petersson      Password age: 61 days 
-Quentin Quentinsson  Password age: 154 days 
-Robert Robertsson    Password age: 127 days 
-Sara Sarasson        Password age: 40 days 
-Tomas Tomasson       Password age: 88 days 
-Ulrika Ulrikasson    Password age: 12 days 
-Viktor Viktorsson    Password age: 52 days 
-Wilma Wilmasson      Password age: 45 days 
-Xavier Xaviersson    Password age: 9 days 
-Ynva Ynvasson        Password age: 122 days 
-Zara Zarasson        Password age: 19 days 
-Erik Olsson          Password age: 202 days 
-Maria Berg           Password age: 163 days 
-Johan Svensson       Password age: 149 days 
-Backup Admin Account Password age: 293 days 
-Test User            Password age: 278 days 
+Backup Admin Account Password age:   293 days
+Test User            Password age:   278 days
+Erik Olsson          Password age:   202 days
+Nils Nilsson         Password age:   193 days
+Maria Berg           Password age:   163 days
+Johan Johansson      Password age:   159 days
+Quentin Quentinsson  Password age:   154 days
+Johan Svensson       Password age:   149 days
+Fredrik Fredriksson  Password age:   141 days
+Robert Robertsson    Password age:   127 days
+Ynva Ynvasson        Password age:   122 days
+Maria Mariasson      Password age:   111 days
+David Davidsson      Password age:   92 days
+Tomas Tomasson       Password age:   88 days
+Björn Björnsson      Password age:   67 days
+Peter Petersson      Password age:   61 days
+Viktor Viktorsson    Password age:   52 days
+Anna Andersson       Password age:   49 days
+Wilma Wilmasson      Password age:   45 days
+Sara Sarasson        Password age:   40 days
+Erik Eriksson        Password age:   36 days
+Helena Helenasson    Password age:   30 days
+Karl Karlsson        Password age:   25 days
+Olof Olofsson        Password age:   20 days
+Cecilia Carlsson     Password age:   19 days
+Zara Zarasson        Password age:   19 days
+Ingrid Ingridsson    Password age:   15 days
+Ulrika Ulrikasson    Password age:   12 days
+Gunnar Gunnarsson    Password age:   11 days
+Xavier Xaviersson    Password age:   9 days
+Lars Larsson         Password age:   9 days
 --------------------------------------------------------------------------------------
 
 Top 10 inactive computers 
@@ -87,4 +87,6 @@ PC-LAG-001      Last seen: 2025-10-14T06:30:00 (7 days)
 PC-DR-001       Last seen: 2025-10-13T22:00:00 (7 days)
 PC-LAG-002      Last seen: 2025-10-13T15:45:00 (7 days)
 SRV-DR-BACKUP   Last seen: 2025-10-14T02:00:00 (7 days)
+--------------------------------------------------------------------------------------
+
 

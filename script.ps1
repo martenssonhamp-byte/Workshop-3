@@ -76,11 +76,14 @@ $report += "--------------------------------------------------------------------
 # 7. Password age for each user
 $report += "Password age per user `n`n"
 
-foreach ($u in $data.users) {
-    if ($u.passwordLastSet) {
-        $passwordDays = ($today - [datetime]$u.passwordLastSet).Days
-        $report += "{0,-20} {1,-10} {2}" -f $u.displayName, "Password age:", "$passwordDays days `n"
-    }
+# Sort password age descending
+$sortedUsers = $data.users | Where-Object { $_.passwordLastSet } | Sort-Object {
+    ($today - [datetime]$_.passwordLastSet).Days
+} -Descending
+
+foreach ($u in $sortedUsers) {
+    $passwordDays = ($today - [datetime]$u.passwordLastSet).Days
+    $report += "{0,-20} {1,-15} {2}`n" -f $u.displayName, "Password age:", "$passwordDays days"
 }
 $report += "--------------------------------------------------------------------------------------`n`n"
 
