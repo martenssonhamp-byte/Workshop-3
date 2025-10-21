@@ -3,7 +3,7 @@
 Domain: techcorp.local
 Forest: techcorp.local
 Export-date: 2025-10-14T06:00:00
-Created: 10/21/2025 09:30:01
+Created: 10/21/2025 09:45:06
 --------------------------------------------------------------------------------------
 Inactive users (30+ days)
 
@@ -89,4 +89,13 @@ PC-LAG-002      Last seen: 2025-10-13T15:45:00 (7 days)
 SRV-DR-BACKUP   Last seen: 2025-10-14T02:00:00 (7 days)
 --------------------------------------------------------------------------------------
 
+Inactive Users via Function (30+ days)
+
+Test User - IT - Last logon: 2025-06-15T10:00:00 (127 days)
+Backup Admin Account - IT - Last logon: 2025-07-01T02:00:00 (112 days)
+Nils Nilsson - Operations - Last logon: 2025-08-15T09:00:00 (67 days)
+Erik Olsson - Sales - Last logon: 2025-08-15T09:00:00 (67 days)
+Maria Berg - Finance - Last logon: 2025-08-20T14:30:00 (61 days)
+Johan Svensson - Operations - Last logon: 2025-08-25T08:15:00 (57 days)
+Quentin Quentinsson - Sales - Last logon: 2025-09-01T10:00:00 (49 days)
 

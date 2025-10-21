@@ -12,6 +12,27 @@ Created: $(Get-Date)
 --------------------------------------------------------------------------------------`n
 "@
 
+#-----------------------------------
+# Function to get inactive accounts
+#-----------------------------------
+
+function Get-InactiveAccounts {
+    param(
+        [Parameter(Mandatory = $true)]
+        [int]$days
+    )
+    $today = Get-Date
+    $inactive = $data.users | Where-Object {
+        $_.lastLogon -and ($today - [datetime]$_.lastLogon).Days -gt $days
+    }
+    $inactiveWithDays = $inactive | Select-Object displayName, department, lastLogon, @{
+        Name       = 'Daysinactive'
+        Expression = { ($today - [datetime]$_.lastLogon).Days }
+    } | Sort-Object -Property Daysinactive -Descending
+
+    return $inactiveWithDays
+}
+
 
 # 3. List inactive users that have not been online for more than 30 days
 $inactiveUsers = $data.users | Where-Object {
@@ -106,7 +127,14 @@ foreach ($c in $inactiveComputers) {
 }
 $report += "--------------------------------------------------------------------------------------`n`n"
 
+# 9. Collect accounts inactive more than 30 days
 
+$inactive30 = Get-InactiveAccounts -days 30
+
+$report += "Inactive Users via Function (30+ days)`n`n"
+foreach ($u in $inactive30) {
+    $report += "$($u.displayName) - $($u.department) - Last logon: $($u.lastLogon) ($($u.DaysInactive) days)`n"
+}
 
 
 # Output the report
