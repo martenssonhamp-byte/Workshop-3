@@ -3,7 +3,7 @@
 Domain: techcorp.local
 Forest: techcorp.local
 Export-date: 2025-10-14T06:00:00
-Created: 10/21/2025 09:06:42
+Created: 10/21/2025 09:09:23
 --------------------------------------------------------------------------------------
 Inactive users (30+ days)
 
@@ -35,4 +35,9 @@ Datacenter     4
 Kontor Malmö   3          
 Lager          3          
 Säkerhetskopia 2          
+--------------------------------------------------------------------------------------
+
+CSV file 'inactive_users.csv' has been created with inactive users. 
+--------------------------------------------------------------------------------------
+
 

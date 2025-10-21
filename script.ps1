@@ -63,6 +63,15 @@ $computersbysite = $data.computers | Group-Object -Property site
 foreach ($group in $computersbysite) {
     $report += "{0,-14} {1,-10} {2}`n" -f $group.Name, $group.Count, ""
 }
+$report += "--------------------------------------------------------------------------------------`n`n"
+
+# 6. Export inactive users to CSV
+
+$inactiveUsers | Select-Object displayName, department, lastLogon | 
+Export-Csv -Path "inactive_users.csv" -NoTypeInformation -Encoding UTF8
+
+$report += "CSV file 'inactive_users.csv' has been created with inactive users. `n"
+$report += "--------------------------------------------------------------------------------------`n`n"
 
 
 # Output the report
