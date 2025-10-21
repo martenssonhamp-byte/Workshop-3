@@ -16,7 +16,7 @@ Created: $(Get-Date)
 "@
 
 #-----------------------------------
-# Function to get inactive accounts TASK 9
+# Function to get inactive accounts TASK 9 | This function is added in task 7 password ages
 #-----------------------------------
 
 function Get-InactiveAccounts {
