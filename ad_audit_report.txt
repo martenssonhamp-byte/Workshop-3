@@ -37,7 +37,7 @@ AD_AUDIT REPORT
 Domain: techcorp.local
 Forest: techcorp.local
 Export-date: 2025-10-14T06:00:00
-Created: 10/21/2025 10:37:58
+Created: 10/21/2025 10:49:03
 --------------------------------------------------------------------------------------
 Inactive Users (30+ days)
 

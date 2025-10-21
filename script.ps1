@@ -36,6 +36,24 @@ function Get-InactiveAccounts {
     return $inactiveWithDays
 }
 
+#--------------------------------
+# Function for try/catch #12
+#--------------------------------
+function Safe-ParseDate {
+
+    try {
+        if ($dateString) {
+            return [datetime]$dateString
+        }
+        else {
+            return $null
+        }
+    }
+    catch {
+        Write-Warning "Could not find date: '$dateSTring'. Skipping.."
+        return $null
+    }
+}
 
 # 3. List inactive users that have not been online for more than 30 days
 $inactive30 = Get-InactiveAccounts -days 30
