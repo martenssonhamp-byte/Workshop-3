@@ -49,11 +49,22 @@ foreach ($u in $data.users) {
 
 $report += "User count per department `n`n"
 foreach ($dept in $depCount.Keys) {
-    $report += "$dept : $($depCount[$dept])`n"
+    $report += "{0,-10} {1}`n" -f $dept, $depCount[$dept]
     
 }
 
 $report += "--------------------------------------------------------------------------------------`n`n"
+
+# 5. Group computers per site
+$report += "Computers per site `n`n"
+
+$computersbysite = $data.computers | Group-Object -Property site
+
+foreach ($group in $computersbysite) {
+    $report += "{0,-14} {1,-10} {2}`n" -f $group.Name, $group.Count, ""
+}
+
+
 # Output the report
 Write-Output $report
 
