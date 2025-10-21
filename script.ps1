@@ -73,6 +73,15 @@ Export-Csv -Path "inactive_users.csv" -NoTypeInformation -Encoding UTF8
 $report += "CSV file 'inactive_users.csv' has been created with inactive users. `n"
 $report += "--------------------------------------------------------------------------------------`n`n"
 
+# 7. Password age for each user
+$report += "Password age per user `n`n"
+
+foreach ($u in $data.users) {
+    if ($u.passwordLastSet) {
+        $passwordDays = ($today - [datetime]$u.passwordLastSet).Days
+        $report += "{0,-20} {1,-10} {2}" -f $u.displayName, "Password age:", "$passwordDays days `n"
+    }
+}
 
 # Output the report
 Write-Output $report
