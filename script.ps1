@@ -6,7 +6,7 @@ $report = ""
 $finalReport = ""
 
 $report = @"
-AD_AUDIT REPORT
+                           AD_AUDIT REPORT
 ---------------------------------------------------------------------------
 Domain: $($data.domain)
 Forest: $($data.forest)
