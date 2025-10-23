@@ -3,33 +3,33 @@
 ===========================================================================
           WARNING!  Accounts expiring within 30 days: 
 ---------------------------------------------------------------------------
-Erik Eriksson   Expiry: 2025-11-01 (10 days left)
-Johan Johansson Expiry: 2025-10-30 (8 days left)
-Test User       Expiry: 2025-10-15 (-6 days left)
+Erik Eriksson   Expiry: 2025-11-01 (8 days left)
+Johan Johansson Expiry: 2025-10-30 (6 days left)
+Test User       Expiry: 2025-10-15 (-8 days left)
 
           WARNING!  Computers inactive for 30+ days: 
 ---------------------------------------------------------------------------
-OLD-PC-001      Last logon: 2025-07-15T10:00:00 (98 days)
-PC-LAG-003      Last logon: 2025-08-10T09:00:00 (72 days)
-LAPTOP-HK-002   Last logon: 2025-08-30T10:00:00 (52 days)
-PC-MAL-003      Last logon: 2025-09-05T11:00:00 (46 days)
-TEST-VM-001     Last logon: 2025-09-20T14:00:00 (31 days)
+OLD-PC-001      Last logon: 2025-07-15T10:00:00 (100 days)
+PC-LAG-003      Last logon: 2025-08-10T09:00:00 (74 days)
+LAPTOP-HK-002   Last logon: 2025-08-30T10:00:00 (54 days)
+PC-MAL-003      Last logon: 2025-09-05T11:00:00 (48 days)
+TEST-VM-001     Last logon: 2025-09-20T14:00:00 (32 days)
 
            CRITICAL!  Users with password older than 90 days:
 ---------------------------------------------------------------------------
-Backup Admin Account Password age:   293 days
-Test User            Password age:   279 days
-Erik Olsson          Password age:   203 days
-Nils Nilsson         Password age:   194 days
-Maria Berg           Password age:   164 days
-Johan Johansson      Password age:   159 days
-Quentin Quentinsson  Password age:   154 days
-Johan Svensson       Password age:   149 days
-Fredrik Fredriksson  Password age:   142 days
-Robert Robertsson    Password age:   128 days
-Ynva Ynvasson        Password age:   123 days
-Maria Mariasson      Password age:   112 days
-David Davidsson      Password age:   93 days
+Backup Admin Account Password age:   295 days
+Test User            Password age:   281 days
+Erik Olsson          Password age:   205 days
+Nils Nilsson         Password age:   196 days
+Maria Berg           Password age:   166 days
+Johan Johansson      Password age:   161 days
+Quentin Quentinsson  Password age:   156 days
+Johan Svensson       Password age:   151 days
+Fredrik Fredriksson  Password age:   144 days
+Robert Robertsson    Password age:   130 days
+Ynva Ynvasson        Password age:   125 days
+Maria Mariasson      Password age:   114 days
+David Davidsson      Password age:   94 days
 
 ===========================================================================
 
@@ -38,17 +38,17 @@ David Davidsson      Password age:   93 days
 Domain: techcorp.local
 Forest: techcorp.local
 Export-date: 2025-10-14T06:00:00
-Created: 10/21/2025 16:06:52
+Created: 10/23/2025 12:55:18
 ---------------------------------------------------------------------------
 Inactive Users (30+ days)
 
-Test User            IT              Last logon: 2025-06-15T10:00:00     (128 days)
-Backup Admin Account IT              Last logon: 2025-07-01T02:00:00     (112 days)
-Nils Nilsson         Operations      Last logon: 2025-08-15T09:00:00     (67 days)
-Erik Olsson          Sales           Last logon: 2025-08-15T09:00:00     (67 days)
-Maria Berg           Finance         Last logon: 2025-08-20T14:30:00     (62 days)
-Johan Svensson       Operations      Last logon: 2025-08-25T08:15:00     (57 days)
-Quentin Quentinsson  Sales           Last logon: 2025-09-01T10:00:00     (50 days)
+Test User            IT              Last logon: 2025-06-15T10:00:00     (130 days)
+Backup Admin Account IT              Last logon: 2025-07-01T02:00:00     (114 days)
+Nils Nilsson         Operations      Last logon: 2025-08-15T09:00:00     (69 days)
+Erik Olsson          Sales           Last logon: 2025-08-15T09:00:00     (69 days)
+Maria Berg           Finance         Last logon: 2025-08-20T14:30:00     (63 days)
+Johan Svensson       Operations      Last logon: 2025-08-25T08:15:00     (59 days)
+Quentin Quentinsson  Sales           Last logon: 2025-09-01T10:00:00     (52 days)
 ---------------------------------------------------------------------------
 
 User count per department 
@@ -75,51 +75,51 @@ CSV file 'inactive_users.csv' has been created with inactive users.
 
 Password age per user 
 
-Backup Admin Account Password age:   293 days
-Test User            Password age:   279 days
-Erik Olsson          Password age:   203 days
-Nils Nilsson         Password age:   194 days
-Maria Berg           Password age:   164 days
-Johan Johansson      Password age:   159 days
-Quentin Quentinsson  Password age:   154 days
-Johan Svensson       Password age:   149 days
-Fredrik Fredriksson  Password age:   142 days
-Robert Robertsson    Password age:   128 days
-Ynva Ynvasson        Password age:   123 days
-Maria Mariasson      Password age:   112 days
-David Davidsson      Password age:   93 days
-Tomas Tomasson       Password age:   88 days
-Björn Björnsson      Password age:   67 days
-Peter Petersson      Password age:   62 days
-Viktor Viktorsson    Password age:   52 days
-Anna Andersson       Password age:   50 days
-Wilma Wilmasson      Password age:   46 days
-Sara Sarasson        Password age:   41 days
-Erik Eriksson        Password age:   36 days
-Helena Helenasson    Password age:   31 days
-Karl Karlsson        Password age:   26 days
-Cecilia Carlsson     Password age:   20 days
-Olof Olofsson        Password age:   20 days
-Zara Zarasson        Password age:   19 days
-Ingrid Ingridsson    Password age:   16 days
-Ulrika Ulrikasson    Password age:   13 days
-Gunnar Gunnarsson    Password age:   11 days
-Xavier Xaviersson    Password age:   10 days
-Lars Larsson         Password age:   9 days
+Backup Admin Account Password age:   295 days
+Test User            Password age:   281 days
+Erik Olsson          Password age:   205 days
+Nils Nilsson         Password age:   196 days
+Maria Berg           Password age:   166 days
+Johan Johansson      Password age:   161 days
+Quentin Quentinsson  Password age:   156 days
+Johan Svensson       Password age:   151 days
+Fredrik Fredriksson  Password age:   144 days
+Robert Robertsson    Password age:   130 days
+Ynva Ynvasson        Password age:   125 days
+Maria Mariasson      Password age:   114 days
+David Davidsson      Password age:   94 days
+Tomas Tomasson       Password age:   90 days
+Björn Björnsson      Password age:   69 days
+Peter Petersson      Password age:   64 days
+Viktor Viktorsson    Password age:   54 days
+Anna Andersson       Password age:   52 days
+Wilma Wilmasson      Password age:   47 days
+Sara Sarasson        Password age:   42 days
+Erik Eriksson        Password age:   38 days
+Helena Helenasson    Password age:   33 days
+Karl Karlsson        Password age:   27 days
+Cecilia Carlsson     Password age:   22 days
+Olof Olofsson        Password age:   22 days
+Zara Zarasson        Password age:   21 days
+Ingrid Ingridsson    Password age:   18 days
+Ulrika Ulrikasson    Password age:   15 days
+Gunnar Gunnarsson    Password age:   13 days
+Xavier Xaviersson    Password age:   12 days
+Lars Larsson         Password age:   11 days
 ---------------------------------------------------------------------------
 
 Top 10 inactive computers 
 
-OLD-PC-001      Last seen: 2025-07-15T10:00:00 (98 days)
-PC-LAG-003      Last seen: 2025-08-10T09:00:00 (72 days)
-LAPTOP-HK-002   Last seen: 2025-08-30T10:00:00 (52 days)
-PC-MAL-003      Last seen: 2025-09-05T11:00:00 (46 days)
-TEST-VM-001     Last seen: 2025-09-20T14:00:00 (31 days)
-PC-HK-005       Last seen: 2025-10-12T14:30:00 (9 days)
-PC-LAG-002      Last seen: 2025-10-13T15:45:00 (8 days)
-PC-HK-003       Last seen: 2025-10-13T16:00:00 (8 days)
-SRV-DR-BACKUP   Last seen: 2025-10-14T02:00:00 (7 days)
-PC-LAG-001      Last seen: 2025-10-14T06:30:00 (7 days)
+OLD-PC-001      Last seen: 2025-07-15T10:00:00 (100 days)
+PC-LAG-003      Last seen: 2025-08-10T09:00:00 (74 days)
+LAPTOP-HK-002   Last seen: 2025-08-30T10:00:00 (54 days)
+PC-MAL-003      Last seen: 2025-09-05T11:00:00 (48 days)
+TEST-VM-001     Last seen: 2025-09-20T14:00:00 (32 days)
+PC-HK-005       Last seen: 2025-10-12T14:30:00 (10 days)
+PC-LAG-001      Last seen: 2025-10-14T06:30:00 (9 days)
+PC-DR-001       Last seen: 2025-10-13T22:00:00 (9 days)
+PC-LAG-002      Last seen: 2025-10-13T15:45:00 (9 days)
+SRV-DR-BACKUP   Last seen: 2025-10-14T02:00:00 (9 days)
 ---------------------------------------------------------------------------
 
 

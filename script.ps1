@@ -1,5 +1,13 @@
-# 1. Load the JSON, date and show domain-name
-$data = Get-Content -Path "ad_export.json" -Raw -Encoding UTF8 | ConvertFrom-Json
+# 1. Load the JSON, date and show domain-name + try catch
+
+try {
+    $data = Get-Content -Path "ad_export.json" -Raw -Encoding UTF8 | ConvertFrom-Json
+}
+catch {
+    Write-Error "X Error: Could not read 'ad_export.Json'. $_"
+    exit 1 #Exit script
+}
+
 $today = Get-Date
 $summary = ""
 $report = ""
@@ -36,26 +44,6 @@ function Get-InactiveAccounts {
     return $inactiveWithDays
 }
 
-#--------------------------------
-# Function for try/catch #12
-#--------------------------------
-function Safe-ParseDate {
-    param(
-        [string]$dateString
-    )
-    try {
-        if ($dateString) {
-            return [datetime]$dateString
-        }
-        else {
-            return $null
-        }
-    }
-    catch {
-        Write-Warning "Could not parse date: '$dateString'. Skipping.."
-        return $null
-    }
-}
 
 # 3. List inactive users that have not been online for more than 30 days
 $inactive30 = Get-InactiveAccounts -days 30
@@ -101,10 +89,16 @@ foreach ($group in $computersbysite) {
 }
 $report += "---------------------------------------------------------------------------`n`n"
 
-# 6. Export inactive users to CSV
+# 6. Export inactive users to CSV + try/catch 
 
-$inactive30 | Select-Object displayName, department, lastLogon | 
-Export-Csv -Path "inactive_users.csv" -NoTypeInformation -Encoding UTF8
+try {
+    $inactive30 | Select-Object displayName, department, lastLogon | 
+    Export-Csv -Path "inactive_users.csv" -NoTypeInformation -Encoding UTF8 -ErrorAction Stop
+    Write-Host "CHECK! Csv-File 'inactive_users.csv' have been created."
+}
+catch { 
+    Write-Warning "ERROR! Could not create 'inactive_users.csv': $_"
+}
 
 $report += "CSV file 'inactive_users.csv' has been created with inactive users. `n"
 $report += "---------------------------------------------------------------------------`n`n"
